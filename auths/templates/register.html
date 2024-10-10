@@ -1,0 +1,25 @@
+{% extends "_layout.html" %}
+
+{% block title %} Login/Register page {% endblock %}
+
+{% block titleform %}
+   <h3>Welcome to <strong>Speedy Bike</strong></h3>
+{% endblock %}
+
+{% block form %}
+   <form action="{% url 'registerAction' %}" method="post">
+       {% csrf_token %}
+       {% for item in form %}
+           <div class="form-group first">
+               {{ item.label_tag }}
+               {{ item }}
+           </div>
+       {% endfor %}
+       <input type="submit" value="Register" class="btn btn-block btn-primary">
+       <div>
+           <a href="{% url 'logins' %}" class="btn btn-block py-2 btn-facebook"> <!-- Adjust 'logins' to the correct URL name -->
+               Login
+           </a>
+       </div>
+   </form>
+{% endblock %}

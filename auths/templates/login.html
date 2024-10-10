@@ -1,0 +1,36 @@
+{% extends "_layout.html" %}
+
+{% block title %} Login/Register page {% endblock %}
+
+{% block titleform %}
+  <h3>Welcome to <strong>Speedy Bike</strong></h3>
+{% endblock %}
+
+{% block form %}
+   <form action="{% url 'Checklogin' %}" method="post">
+        {% csrf_token %}
+        {% for item in form %}
+            <div class="form-group first">
+                {{ item.label_tag }}
+                {{ item }}
+            </div>
+        {% endfor %}
+        <input type="hidden" name="next" value="{{ next }}">
+        <div class="d-sm-flex mb-5 align-items-center">
+            <label class="control control--checkbox mb-3 mb-sm-0">
+                <span class="caption">Remember Me</span>
+                <input type="checkbox" checked="checked"/>
+                <div class="control__indicator"></div>
+            </label>
+        </div>
+        <input type="submit" value="Login" class="btn btn-block btn-primary">
+        <div>
+            <a href="{% url 'registerAction' %}" class="btn btn-block btn-facebook">
+                Register
+            </a>
+            <a href="{% url 'password_reset' %}" class="btn btn-block py-2 btn-google">
+                Forget Password
+            </a>
+        </div>
+    </form>
+{% endblock %}
